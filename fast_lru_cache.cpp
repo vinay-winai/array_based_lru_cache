@@ -24,7 +24,8 @@ private:
         });
         order.resize(std::distance(order.begin(), order_itr), TOMB_STONE);
         std::vector<std::pair<int, int>> new_order_array(array_size, TOMB_STONE); // Initialize new order array with tombstone values
-        int start_idx = capacity*3;
+        // Right-align surviving entries even when the cache is not full.
+        int start_idx = array_size - static_cast<int>(order.size());
         int idx = start_idx; // Start index for copying non-tombstone elements
         LRU = array_size - 1; // Update LRU index
         MRU = start_idx-1; // Update MRU index
